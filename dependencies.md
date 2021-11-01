@@ -1,4 +1,3 @@
-## wepback 세팅
 npm init
 yarn add react react-dom
 yarn add typescript
