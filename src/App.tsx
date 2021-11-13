@@ -1,7 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const App = () => {
-  return <p>하이</p>;
+  return (
+    <div>
+      <p>안녕 뭐라는거야</p>
+    </div>
+  );
 };
 
 export default App;
