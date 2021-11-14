@@ -104,7 +104,7 @@ entey 파일의 `./index.ts` 안에 모든 `ts, tsx` 파일을 `ts-loader`를 �
 
 위에서 해제한 type 체크를 다시 활성화합니다.
 
-### HtmlWebpackPlugin
+#### HtmlWebpackPlugin
 
 html 파일에 script 태그를 이용해 js 파일을 삽입하지 않아도 자동으로 삽입되게 합니다.
 
@@ -115,4 +115,39 @@ html 파일에 script 태그를 이용해 js 파일을 삽입하지 않아도 �
         template: "./src/index.html",
       }),
     ],
+```
+
+### 개발 wepback 설정
+
+**dev webpack 설정**입니다. `webpack-merge`를 이용해 **공통 webpack인 common 파일과 merge** 합니다.
+
+#### mode
+
+환경 모드를 설정합니다. 개발, 배포 두 가지로 설정했습니다.
+
+### devtool
+
+오류, 경고를 쉽게 추적할 수 있는 **소스맵 설정**입니다.
+
+### devserver
+
+개발 환경에 대한 설정입니다. **host와 port number 지정, 자동으로 브라우저를 open 할 수 있는 지 설정, CRA의 404 에러를 해결해주는 historyApiFallback**을 설정했습니다.
+
+```javascript
+const { merge } = require('webpack-merge');
+const common = require('./webpack.config.common.js');
+
+module.exports = () => {
+  return merge(common(), {
+    mode: 'development',
+    devtool: 'inline-source-map',
+    devServer: {
+      static: './dist',
+      host: 'localhost',
+      port: 3000,
+      open: true,
+      historyApiFallback: true,
+    },
+  });
+};
 ```
